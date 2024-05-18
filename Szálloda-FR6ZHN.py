@@ -62,7 +62,7 @@ class Szalloda:
         if not szoba:
             return "Nem létező szobaszám."
 
-        datum_obj = datetime.strptime(datum, '%Y-%m-%d')
+        datum_obj = datetime.strptime(datum, '%Y.%m.%d')
         if datum_obj < datetime.now():
             return "A foglalási dátum nem lehet később, mint a mai dátum."
 
@@ -88,15 +88,15 @@ class Szalloda:
         return "Ilyen foglalási szám nem létezik."
 
 
-def felhasznaloi_interfesz():
+def felhasznaloi_interface():
     szalloda = Szalloda("Kockacukor Hotel")
     print(f"Üdvözöljük a {szalloda.nev}**** foglalási felületén!\n"
           "A hotel személyzete kellemes kikapcsolódást és jó pihenést kíván Önnek/Önöknek!" )
 
     # Random foglalások
-    szalloda.foglalas("102", (datetime.now() + timedelta(days=4)).strftime('%Y-%m-%d'))
-    szalloda.foglalas("103", (datetime.now() + timedelta(days=10)).strftime('%Y-%m-%d'))
-    szalloda.foglalas("101", (datetime.now() + timedelta(days=5)).strftime('%Y-%m-%d'))
+    szalloda.foglalas("102", (datetime.now() + timedelta(days=4)).strftime('%Y.%m.%d'))
+    szalloda.foglalas("103", (datetime.now() + timedelta(days=10)).strftime('%Y.%m.%d'))
+    szalloda.foglalas("101", (datetime.now() + timedelta(days=5)).strftime('%Y.%m.%d'))
 
 
 
@@ -111,12 +111,12 @@ def felhasznaloi_interfesz():
                     break
                 else:
                     print("Nem létező szobaszám.")
-            datum = input("Adja meg a foglalás dátumát (YYYY-MM-DD): ")
+            datum = input("Adja meg a foglalás dátumát (YYYY.MM.DD): ")
             print(szalloda.foglalas(szobaszam, datum))
         elif valasztas == "2":
             print(szalloda.foglalasok_listazasa())
         elif valasztas == "3":
-            foglalasi_szam = input("Adja meg a törlendő foglalási számot: ")
+            foglalasi_szam = input("Adja meg a foglalás számát, amit törölni szeretne: ")
             print(szalloda.foglalas_torlese(foglalasi_szam))
         elif valasztas == "4":
             print("Kilépés a programból.")
@@ -125,4 +125,4 @@ def felhasznaloi_interfesz():
             print("Érvénytelen opció.")
 
 
-felhasznaloi_interfesz()
+felhasznaloi_interface()
