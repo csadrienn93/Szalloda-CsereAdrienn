@@ -67,7 +67,7 @@ class Szalloda:
             return "A foglalási dátum nem lehet később, mint a mai dátum."
 
         if any(f.szobaszam == szobaszam and f.datum == datum for f in self.foglalasok):
-            return "Ez a szoba ebben az időpontban már foglalt"
+            return "Ez a szoba a megadott időpontban már foglalt"
 
         foglalasi_szam = str(random.randint(100000, 999999))
         self.foglalasok.append(Foglalas(szobaszam, datum, foglalasi_szam, szoba.ar_megad()))
