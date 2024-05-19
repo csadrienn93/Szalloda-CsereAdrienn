@@ -33,7 +33,6 @@ class Franciaágyas_szoba_pótággyal(Szoba):
     def __init__(self, szobaszam):
         super().__init__(szobaszam, 20000)
 
-
 class Foglalas:
     def __init__(self, szobaszam, datum, foglalasi_szam, ar):
         self.szobaszam = szobaszam
@@ -56,18 +55,18 @@ class Szalloda:
     def foglalas(self, szobaszam, datum):
         szoba = next((s for s in self.szobak if s.szobaszam == szobaszam), None)
         if not szoba:
-            return "Nincs ilyen szobaszám."
+            return "Nem létező szobaszám."
 
         datum_obj = datetime.strptime(datum, '%Y-%m-%d')
         if datum_obj < datetime.now():
-            return "A foglalási dátum nem lehet később, mint a mai dátum."
+            return "A foglalási dátum nem lehet korábbi, mint a mai dátum."
 
         if any(f.szobaszam == szobaszam and f.datum == datum for f in self.foglalasok):
-            return "Ez a szoba a megadott időpontban már foglalt"
+            return "Ez a szoba ebben az időpontban már foglalt"
 
         foglalasi_szam = str(random.randint(100000, 999999))
         self.foglalasok.append(Foglalas(szobaszam, datum, foglalasi_szam, szoba.ar_megad()))
-        return f"Foglalás sikeres. Foglalási szám: {foglalasi_szam}, Ár: {szoba.ar_megad()} Ft"
+        return f"Foglalását köszönjük! Foglalás száma: {foglalasi_szam}, Ár: {szoba.ar_megad()} Ft"
 
     def foglalasok_listazasa(self):
         if not self.foglalasok:
@@ -80,7 +79,7 @@ class Szalloda:
         torlendo_foglalas = next((f for f in self.foglalasok if f.foglalasi_szam == foglalasi_szam), None)
         if torlendo_foglalas:
             self.foglalasok.remove(torlendo_foglalas)
-            return "Foglalás törölve: {foglalasi_szam}"
+            return f"Foglalás törölve: {foglalasi_szam}"
         return "Ilyen foglalási szám nem létezik."
 
 def kockacukor():
@@ -92,7 +91,7 @@ def kockacukor():
     szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
     szalloda.foglalas("101", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
     szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
-    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
+    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
 
     while True:
         print("\n1. Szoba foglalás\n2. Jelenlegi foglalások listázása\n3. Foglalás törlése\n4. Kilépés")
@@ -104,18 +103,19 @@ def kockacukor():
                 if szoba:
                     break
                 else:
-                    print("Nincs ilyen szobaszám.")
-            datum = input("Adja meg a foglalni kívánt időpontot (YYYY.MM.DD): ")
+                    print("Ilyen szobaszám nem létezik.")
+            datum = input("Adja meg a foglalás dátumát (YYYY-MM-DD): ")
             print(szalloda.foglalas(szobaszam, datum))
         elif valasztas == "2":
             print(szalloda.foglalasok_listazasa())
         elif valasztas == "3":
             foglalasi_szam = input("Adja meg a foglalás számát, amit törölni szeretne: ")
             print(szalloda.foglalas_torlese(foglalasi_szam))
+            print("A foglalását töröltük, a foglalás összegét hamarosan jóváírjuk a számláján.")
         elif valasztas == "4":
-            print("Kilépés a programból.")
+            print("Kilépés a foglalási rendszerből.")
             break
         else:
-            print("Rossz menüpontot adott meg. Kérjük válasszon a felsorolt lehetőségek közül 1-től 4-ig.")
+            print("Rossz menüpontot adott meg. Kérjük válasszon a felsorolt lehetőségek közül 1-től 4-ig")
 
 kockacukor()
