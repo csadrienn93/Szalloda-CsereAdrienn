@@ -62,7 +62,7 @@ class Szalloda:
         if not szoba:
             return "Nem létező szobaszám."
 
-        datum_obj = datetime.strptime(datum, '%Y.%m.%d')
+        datum_obj = datetime.strptime(datum, '%Y-%m-%d')
         if datum_obj < datetime.now():
             return "A foglalási dátum nem lehet később, mint a mai dátum."
 
