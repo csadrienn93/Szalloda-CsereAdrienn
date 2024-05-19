@@ -80,7 +80,7 @@ class Szalloda:
         torlendo_foglalas = next((f for f in self.foglalasok if f.foglalasi_szam == foglalasi_szam), None)
         if torlendo_foglalas:
             self.foglalasok.remove(torlendo_foglalas)
-            return f"Foglalás törölve: {foglalasi_szam}"
+            return "Foglalás törölve: {foglalasi_szam}"
         return "Ilyen foglalási szám nem létezik."
 
 def kockacukor():
@@ -88,11 +88,11 @@ def kockacukor():
     print(f"Üdvözöljük a {szalloda.nev}**** foglalási felületén!\n"
           "A hotel személyzete kellemes kikapcsolódást és jó pihenést kíván Önnek/Önöknek!" )
 
-    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365)))
-    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365)))
-    szalloda.foglalas("101", (datetime.now() + timedelta(days=random.randint(1, 365)))
-    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365)))
-    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365)))
+    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
+    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
+    szalloda.foglalas("101", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
+    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
+    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y-%m-%d'))
 
     while True:
         print("\n1. Szoba foglalás\n2. Jelenlegi foglalások listázása\n3. Foglalás törlése\n4. Kilépés")
@@ -104,8 +104,8 @@ def kockacukor():
                 if szoba:
                     break
                 else:
-                    print("Nem létező szobaszám.")
-            datum = input("Adja meg a foglalás dátumát (YYYY.MM.DD): ")
+                    print("Nincs ilyen szobaszám.")
+            datum = input("Adja meg a foglalni kívánt időpontot (YYYY.MM.DD): ")
             print(szalloda.foglalas(szobaszam, datum))
         elif valasztas == "2":
             print(szalloda.foglalasok_listazasa())
