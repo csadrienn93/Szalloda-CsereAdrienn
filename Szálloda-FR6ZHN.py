@@ -83,7 +83,6 @@ class Szalloda:
             return f"Foglalás törölve: {foglalasi_szam}"
         return "Ilyen foglalási szám nem létezik."
 
-
 def kockacukor():
     szalloda = Szalloda("Kockacukor Hotel")
     print(f"Üdvözöljük a {szalloda.nev}**** foglalási felületén!\n"
