@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 import random
 
-
 class Szoba(ABC):
     def __init__(self, szobaszam, ar):
         self.szobaszam = szobaszam
@@ -13,14 +12,12 @@ class Szoba(ABC):
     def ar_megad(self):
         pass
 
-
 class Egy_ágyas_szoba(Szoba):
     def ar_megad(self):
         return self.ar
 
     def __init__(self, szobaszam):
         super().__init__(szobaszam, 15000)
-
 
 class Két_ágyas_szoba(Szoba):
     def ar_megad(self):
@@ -43,7 +40,6 @@ class Foglalas:
         self.datum = datum
         self.foglalasi_szam = foglalasi_szam
         self.ar = ar
-
 
 class Szalloda:
     def __init__(self, nev):
@@ -93,13 +89,11 @@ def kockacukor():
     print(f"Üdvözöljük a {szalloda.nev}**** foglalási felületén!\n"
           "A hotel személyzete kellemes kikapcsolódást és jó pihenést kíván Önnek/Önöknek!" )
 
-    # Random foglalások
-    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
-    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
-    szalloda.foglalas("101", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
-    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
-    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
-
+    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365)))
+    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365)))
+    szalloda.foglalas("101", (datetime.now() + timedelta(days=random.randint(1, 365)))
+    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365)))
+    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365)))
 
     while True:
         print("\n1. Szoba foglalás\n2. Jelenlegi foglalások listázása\n3. Foglalás törlése\n4. Kilépés")
