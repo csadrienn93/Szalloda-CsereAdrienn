@@ -56,7 +56,7 @@ class Szalloda:
     def foglalas(self, szobaszam, datum):
         szoba = next((s for s in self.szobak if s.szobaszam == szobaszam), None)
         if not szoba:
-            return "Nem létező szobaszám."
+            return "Nincs ilyen szobaszám."
 
         datum_obj = datetime.strptime(datum, '%Y-%m-%d')
         if datum_obj < datetime.now():
