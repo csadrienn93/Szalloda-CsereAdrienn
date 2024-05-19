@@ -116,6 +116,6 @@ def kockacukor():
             print("Kilépés a foglalási rendszerből.")
             break
         else:
-            print("Rossz menüpontot adott meg. Kérjük válasszon a felsorolt lehetőségek közül 1-től 4-ig")
+            print("Rossz menüpontot adott meg. Kérjük válasszon a felsorolt lehetőségek közül 1-től 4-ig.")
 
 kockacukor()
