@@ -88,16 +88,17 @@ class Szalloda:
         return "Ilyen foglalási szám nem létezik."
 
 
-def felhasznaloi_interface():
+def kockacukor():
     szalloda = Szalloda("Kockacukor Hotel")
     print(f"Üdvözöljük a {szalloda.nev}**** foglalási felületén!\n"
           "A hotel személyzete kellemes kikapcsolódást és jó pihenést kíván Önnek/Önöknek!" )
 
     # Random foglalások
-    szalloda.foglalas("102", (datetime.now() + timedelta(days=4)).strftime('%Y.%m.%d'))
-    szalloda.foglalas("103", (datetime.now() + timedelta(days=10)).strftime('%Y.%m.%d'))
-    szalloda.foglalas("101", (datetime.now() + timedelta(days=5)).strftime('%Y.%m.%d'))
-
+    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
+    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
+    szalloda.foglalas("101", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
+    szalloda.foglalas("102", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
+    szalloda.foglalas("103", (datetime.now() + timedelta(days=random.randint(1, 365))).strftime('%Y.%m.%d'))
 
 
     while True:
@@ -122,7 +123,6 @@ def felhasznaloi_interface():
             print("Kilépés a programból.")
             break
         else:
-            print("Érvénytelen opció.")
+            print("Rossz menüpontot adott meg. Kérjük válasszon a felsorolt lehetőségek közül 1-től 4-ig.")
 
-
-felhasznaloi_interface()
+kockacukor()
