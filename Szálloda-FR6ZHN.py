@@ -80,7 +80,7 @@ class Szalloda:
         torlendo_foglalas = next((f for f in self.foglalasok if f.foglalasi_szam == foglalasi_szam), None)
         if torlendo_foglalas:
             self.foglalasok.remove(torlendo_foglalas)
-            return f"Foglalás törölve: {foglalasi_szam}"
+            return "Foglalás törölve: {foglalasi_szam}"
         return "Ilyen foglalási szám nem létezik."
 
 def kockacukor():
